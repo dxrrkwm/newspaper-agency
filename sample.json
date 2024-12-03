@@ -1,0 +1,78 @@
+[
+  {
+    "model": "newspaper.topic",
+    "pk": 1,
+    "fields": {
+      "name": "Politics"
+    }
+  },
+  {
+    "model": "newspaper.topic",
+    "pk": 2,
+    "fields": {
+      "name": "Sports"
+    }
+  },
+  {
+    "model": "newspaper.topic",
+    "pk": 3,
+    "fields": {
+      "name": "Technology"
+    }
+  },
+  {
+    "model": "account.redactor",
+    "pk": 1,
+    "fields": {
+      "username": "john_doe",
+      "password": "pbkdf2_sha256$260000$hashedpasswordhere",
+      "email": "john@example.com",
+      "years_of_experience": 5,
+      "prof_pic": null
+    }
+  },
+  {
+    "model": "account.redactor",
+    "pk": 2,
+    "fields": {
+      "username": "jane_doe",
+      "password": "pbkdf2_sha256$260000$hashedpasswordhere",
+      "email": "jane@example.com",
+      "years_of_experience": 3,
+      "prof_pic": null
+    }
+  },
+  {
+    "model": "newspaper.newspaper",
+    "pk": 1,
+    "fields": {
+      "title": "Breaking News: Politics",
+      "content": "Content of the political news.",
+      "published_date": "2024-12-03T12:00:00Z",
+      "topic": 1,
+      "publishers": [1, 2]
+    }
+  },
+  {
+    "model": "newspaper.newspaper",
+    "pk": 2,
+    "fields": {
+      "title": "Latest Sports Update",
+      "content": "Content of the sports news.",
+      "published_date": "2024-12-03T14:00:00Z",
+      "topic": 2,
+      "publishers": [1]
+    }
+  },
+  {
+    "model": "newspaper.newspaper",
+    "pk": 3,
+    "fields": {
+      "title": "Tech Innovations 2024",
+      "content": "Content of the tech news.",
+      "published_date": "2024-12-03T15:00:00Z",
+      "topic": 3,
+      "publishers": [2]
+    }
+  }
+]

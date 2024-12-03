@@ -1,0 +1,58 @@
+{% extends "layouts/base-fullscreen.html" %}
+<link rel="stylesheet" href="/assets/css/styles.css">
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block title %} Login page {% endblock %}
+
+{% block body_class %} sign-in-illustration {% endblock %}
+
+{% block content %}
+
+  {% include 'includes/navigation-transparent.html' %}
+
+  <div class="page-header align-items-start min-vh-100" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/bf/Webb%27s_First_Deep_Field.jpg');" loading="lazy" >
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container my-auto">
+      <div class="row">
+        <div class="col-lg-4 col-md-8 col-12 mx-auto">
+          <div class="card z-index-0 fadeIn3 fadeInBottom">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                  The Daily Beacon
+                </h4>
+                <div class="row mt-3">
+                  <p class="mb-0 text-white text-center">
+                    {% if msg %}
+                      {{ msg | safe }}
+                    {% else %}
+                      Fill in your data to sign in.
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <form role="form" method="post" action="{% url "login" %}" class="text-start">
+
+                {% csrf_token %}
+
+                {{ form|crispy }}
+                <div class="text-center">
+                  <button type="submit" name="login"
+                          class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
+                          <input type="hidden" name="next" value="{{ next }}" />
+                </div>
+                <p class="mt-4 text-sm text-center">
+                  Can't sign in?
+                  <a href="{% url "account:signup" %}" class="text-primary text-gradient font-weight-bold">Sign Up</a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

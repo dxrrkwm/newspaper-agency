@@ -1,5 +1,5 @@
 """
-URL configuration for newspaper_agency project.
+URL configuration for config project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("", include("account.urls", namespace="account")),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path('newspaper/', include('newspaper.urls', namespace='newspaper')),
 ]

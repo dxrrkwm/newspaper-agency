@@ -1,3 +1,59 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
-# Create your views here.
+from django.views import generic
+
+from newspaper.models import Newspaper, Topic
+
+
+class NewspaperListView(generic.ListView):
+    model = Newspaper
+    queryset = Newspaper.objects.all().order_by("-published_date")
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        topics = self.request.GET.getlist("topics")
+        if topics:
+            queryset = queryset.filter(topic__id__in=topics)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["topics"] = self.request.GET.getlist("topics")
+        return context
+
+
+class NewspaperDetailView(generic.DetailView):
+    model = Newspaper
+
+
+class NewspaperCreateView(generic.CreateView):
+    model = Newspaper
+    fields = "__all__"
+    success_url = reverse_lazy("newspaper:index")
+
+
+class NewspaperUpdateView(generic.UpdateView):
+    model = Newspaper
+    fields = "__all__"
+    success_url = reverse_lazy("newspaper:index")
+
+
+class NewspaperDeleteView(generic.DeleteView):
+    model = Newspaper
+    success_url = reverse_lazy("newspaper:index")
+
+
+class TopicListView(generic.ListView):
+    model = Topic
+
+
+class TopicUpdateView(generic.UpdateView):
+    model = Topic
+    fields = "__all__"
+    success_url = reverse_lazy("newspaper:topic-list")
+
+
+class TopicDeleteView(generic.DeleteView):
+    model = Topic
+    success_url = reverse_lazy("newspaper:topic-list")
