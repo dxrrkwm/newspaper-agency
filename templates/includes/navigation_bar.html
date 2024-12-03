@@ -8,22 +8,17 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active justify-content-center">
-          <a class="nav-link" href={% url 'agency_system:index' %}>Home</a>
+          <a class="nav-link" href={% url 'newspaper:index' %}>Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#all_content">Content</a>
+          <a class="nav-link" href="#">Content</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#latest_news">Latest News</a>
+          <a class="nav-link" href="#">Latest News</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#about_us">About Us</a>
+          <a class="nav-link" href="#">About Us</a>
         </li>
-        {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'agency_system:redactor-detail' pk=user.id %}">My Profile</a>
-          </li>
-        {% endif %}
       </ul>
       <form class="form-inline mt-2 mt-md-0">
         {% if user.is_authenticated %}
