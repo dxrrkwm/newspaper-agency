@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
@@ -43,9 +44,19 @@ class NewspaperDeleteView(generic.DeleteView):
     model = Newspaper
     success_url = reverse_lazy("newspaper:index")
 
+class TopicCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Topic
+    fields = "__all__"
+    success_url = reverse_lazy("agency_system:topic-list")
+    template_name = "agency_system/topic_form.html"
 
 class TopicListView(generic.ListView):
     model = Topic
+
+
+class TopicDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Topic
+    context_object_name = "topic"
 
 
 class TopicUpdateView(generic.UpdateView):
