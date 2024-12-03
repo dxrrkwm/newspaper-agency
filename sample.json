@@ -27,8 +27,7 @@
       "username": "john_doe",
       "password": "pbkdf2_sha256$260000$hashedpasswordhere",
       "email": "john@example.com",
-      "years_of_experience": 5,
-      "prof_pic": null
+      "years_of_experience": 5
     }
   },
   {
@@ -38,8 +37,7 @@
       "username": "jane_doe",
       "password": "pbkdf2_sha256$260000$hashedpasswordhere",
       "email": "jane@example.com",
-      "years_of_experience": 3,
-      "prof_pic": null
+      "years_of_experience": 3
     }
   },
   {
