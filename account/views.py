@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
+from django.views.generic import RedirectView
 
 from account.forms import CreateRedactorForm
 from account.models import Redactor
@@ -25,3 +26,7 @@ class UpdateRedactorView(LoginRequiredMixin, generic.UpdateView):
     form_class = CreateRedactorForm
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('account:redactor_list')
+
+
+class RedirectToLoginView(RedirectView):
+    url = reverse_lazy('login')
