@@ -15,30 +15,34 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(RedactorListView, self).get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
-        context["search_form"] = RedactorSearchForm(initial={"username": username})
+        context["search_form"] = RedactorSearchForm(
+            initial={"username": username}
+        )
         return context
 
     def get_queryset(self):
         queryset = Redactor.objects.all()
         form = RedactorSearchForm(self.request.GET)
         if form.is_valid():
-            return queryset.filter(username__startswith=form.cleaned_data["username"])
+            return queryset.filter(
+                username__startswith=form.cleaned_data["username"]
+            )
         return queryset
 
 
 class SignupView(generic.CreateView):
     model = Redactor
     form_class = CreateRedactorForm
-    template_name = 'registration/register.html'
-    success_url = reverse_lazy('account:redactor_list')
+    template_name = "registration/register.html"
+    success_url = reverse_lazy("account:redactor_list")
 
 
 class UpdateRedactorView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
     form_class = CreateRedactorForm
-    template_name = 'newspaper/redactor_detail.html'
-    success_url = reverse_lazy('account:redactor_list')
+    template_name = "newspaper/redactor_detail.html"
+    success_url = reverse_lazy("account:redactor_list")
 
 
 class RedirectToLoginView(RedirectView):
-    url = reverse_lazy('login')
+    url = reverse_lazy("login")

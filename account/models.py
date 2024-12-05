@@ -7,4 +7,4 @@ class Redactor(AbstractUser):
     years_of_experience = models.IntegerField(blank=True, null=True)
 
     def get_absolute_url(self):
-        return reverse('account:redactor-list', kwargs={'pk': self.pk})
+        return reverse("account:redactor-list", kwargs={"pk": self.pk})

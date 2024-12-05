@@ -15,25 +15,53 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Topic',
+            name="Topic",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
             ],
             options={
-                'verbose_name_plural': 'Topics',
-                'ordering': ['name'],
+                "verbose_name_plural": "Topics",
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='Newspaper',
+            name="Newspaper",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('content', models.TextField()),
-                ('published_date', models.DateTimeField(auto_now_add=True)),
-                ('publishers', models.ManyToManyField(related_name='newspapers', to=settings.AUTH_USER_MODEL)),
-                ('topic', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='newspapers', to='newspaper.topic')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("content", models.TextField()),
+                ("published_date", models.DateTimeField(auto_now_add=True)),
+                (
+                    "publishers",
+                    models.ManyToManyField(
+                        related_name="newspapers", to=settings.AUTH_USER_MODEL
+                    ),
+                ),
+                (
+                    "topic",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="newspapers",
+                        to="newspaper.topic",
+                    ),
+                ),
             ],
         ),
     ]
