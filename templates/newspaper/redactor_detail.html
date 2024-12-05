@@ -44,7 +44,7 @@
       </h1>
       {% if  user.id == user.is_superuser or user.id == redactor.id %}
         <br>
-        <a href="{% url 'account:redactor_list' pk=redactor.id %}" class=" btn-danger"
+        <a href="{% url 'account:redactor_list' %}" class=" btn-danger"
            style="border-radius: 20px; padding: 5px 10px; text-decoration: none;">Delete account</a>
         <br>
       {% endif %}
@@ -57,11 +57,11 @@
       {% if user.id == redactor.id %}
         <p><strong style="color: goldenrod">Password:</strong> ********
       {% endif %}
-      {% if user.id == redactor.id %}
-        <a class="ml-3" style="font-size: 1.3rem; text-decoration: none;"
-           href="{% url 'agency_system:password-update' pk=redactor.id %}">Change
-          Password</a>
-      {% endif %}
+{#      {% if user.id == redactor.id %}#}
+{#        <a class="ml-3" style="font-size: 1.3rem; text-decoration: none;"#}
+{#           href="{% url 'agency_system:password-update' pk=redactor.id %}">Change#}
+{#          Password</a>#}
+{#      {% endif %}#}
       </p>
       {% if not redactor.bio %}
         <p><strong style="color: goldenrod">Bio:</strong> No bio yet</p>
