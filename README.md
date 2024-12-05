@@ -3,7 +3,7 @@
 This project is a web application for managing a newspaper agency. It allows users to create, update, and delete newspapers, topics, and redactors. The application is built using Django and includes features such as search functionality, user authentication, and form handling with crispy forms.
 
 ## 🚨Project Structure
-![Structure](Structure.webp)
+![structure](https://github.com/user-attachments/assets/e0cc968a-9383-4dca-899d-94220aa909cd)
 
 ## 💻Installation
 
