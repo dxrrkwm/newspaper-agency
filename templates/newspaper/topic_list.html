@@ -17,24 +17,24 @@
             <a class="nav-link" href={% url 'newspaper:index' %}>Home</a>
           </li>
           <li class="nav-item active justify-content-center">
-            <a class="nav-link" href={% url 'account:redactor_list' %}>All Redactors</a>
+            <a class="nav-link" href={% url 'newspaper:topic-list' %}>All Topics</a>
           </li>
           <li class="nav-item active justify-content-center">
-            <a class="nav-link" href={% url 'newspaper:index' %}>All News</a>
+            <a class="nav-link" href={% url 'account:redactor_list' %}>All Redactors</a>
           </li>
         </ul>
-        <form class="form-inline mt-2 mt-md-0">
+{#        <form method="post" action="{% url 'logout' %}" class="form-inline mt-2 mt-md-0">#}
           {% if user.is_authenticated %}
-            <a class="btn btn-outline-success my-2 my-sm-0 btn-logout" href="{% url 'logout' %}">
-              <i class="fa fa-sign-out me-1"></i> Logout
-            </a>
+            <form class="btn btn-outline-success my-2 my-sm-0 btn-logout" method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <i class="fa fa-sign-out me-1"></i> <input type="submit" value="Logout">
+            </form>
           {% else %}
             <a class="btn btn-outline-success my-2 my-sm-0 btn-login" href="{% url 'login' %}">
               <i class="fa fa-sign-in me-1"></i> Login
             </a>
           {% endif %}
-        </form>
-
+{#        </form>#}
       </div>
     </nav>
   </header>

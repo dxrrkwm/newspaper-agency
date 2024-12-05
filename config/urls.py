@@ -19,11 +19,11 @@ from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
 
-from account.views import RedirectToLoginView
+# from account.views import RedirectToLoginView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", RedirectToLoginView.as_view(), name="redirect_to_login"),
+    # path("", RedirectToLoginView.as_view(), name="redirect_to_login"),
     path("accounts/", include("django.contrib.auth.urls")),
     path("newspaper/", include("newspaper.urls", namespace="newspaper")),
     path("account/", include("account.urls", namespace="account")),

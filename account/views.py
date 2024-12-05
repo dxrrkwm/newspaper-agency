@@ -42,7 +42,3 @@ class UpdateRedactorView(LoginRequiredMixin, generic.UpdateView):
     form_class = CreateRedactorForm
     template_name = "newspaper/redactor_detail.html"
     success_url = reverse_lazy("account:redactor_list")
-
-
-class RedirectToLoginView(RedirectView):
-    url = reverse_lazy("login")
