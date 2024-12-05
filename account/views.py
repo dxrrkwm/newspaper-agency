@@ -3,15 +3,27 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic import RedirectView
 
-from account.forms import CreateRedactorForm
+from account.forms import CreateRedactorForm, RedactorSearchForm
 from account.models import Redactor
 
 
 class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
-    context_object_name = 'redactors'
-    template_name = 'newspaper/redactor_list.html'
-    success_url = reverse_lazy('account:redactor_list')
+    paginate_by = 6
+    template_name = "newspaper/redactor_list.html"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(RedactorListView, self).get_context_data(**kwargs)
+        username = self.request.GET.get("username", "")
+        context["search_form"] = RedactorSearchForm(initial={"username": username})
+        return context
+
+    def get_queryset(self):
+        queryset = Redactor.objects.all()
+        form = RedactorSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(username__startswith=form.cleaned_data["username"])
+        return queryset
 
 
 class SignupView(generic.CreateView):
@@ -24,7 +36,7 @@ class SignupView(generic.CreateView):
 class UpdateRedactorView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
     form_class = CreateRedactorForm
-    template_name = 'registration/signup.html'
+    template_name = 'newspaper/redactor_detail.html'
     success_url = reverse_lazy('account:redactor_list')
 
 
