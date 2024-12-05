@@ -23,18 +23,16 @@
             <a class="nav-link" href={% url 'account:redactor_list' %}>All Redactors</a>
           </li>
         </ul>
-{#        <form method="post" action="{% url 'logout' %}" class="form-inline mt-2 mt-md-0">#}
           {% if user.is_authenticated %}
-            <form class="btn btn-outline-success my-2 my-sm-0 btn-logout" method="post" action="{% url 'logout' %}">
+            <form method="post" action="{% url 'logout' %}">
               {% csrf_token %}
-              <i class="fa fa-sign-out me-1"></i> <input type="submit" value="Logout">
+              <i class="fa fa-sign-out me-1"></i> <input class="btn btn-logout" type="submit" value="Logout">
             </form>
           {% else %}
             <a class="btn btn-outline-success my-2 my-sm-0 btn-login" href="{% url 'login' %}">
               <i class="fa fa-sign-in me-1"></i> Login
             </a>
           {% endif %}
-{#        </form>#}
       </div>
     </nav>
   </header>
