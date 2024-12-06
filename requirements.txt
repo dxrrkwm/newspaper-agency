@@ -21,6 +21,7 @@ pathspec==0.12.1
 pillow==11.0.0
 platformdirs==4.3.6
 ply==3.11
+psycopg2-binary==2.9.10
 pycodestyle==2.12.1
 pyflakes==3.2.0
 python-dotenv==1.0.1
@@ -30,3 +31,4 @@ sqlparse==0.5.2
 stone==3.3.1
 tzdata==2024.2
 urllib3==2.2.3
+whitenoise==6.8.2
