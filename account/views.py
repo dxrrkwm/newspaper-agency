@@ -12,7 +12,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 6
     template_name = "newspaper/redactor_list.html"
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super(RedactorListView, self).get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
         context["search_form"] = RedactorSearchForm(
